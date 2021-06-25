@@ -141,7 +141,7 @@ function showModal(index) {
       alt: 'Close mobile modal window',
     });
   modalCard['work-card'].appendChild(modalClose);
-  modalClose.addEventListener('click', () => {
+  modalClose.addEventListener('close', () => {
     closeModal();
   });
 
@@ -165,7 +165,7 @@ function populateWorkSection() {
   works.forEach((work, index) => {
     let card = createCard(index);
     card = structureCard(card, index);
-    card['button-project'].addEventListener('click', () => {
+    card['button-project'].addEventListener('onclick', () => {
       showModal(index);
     });
   });
