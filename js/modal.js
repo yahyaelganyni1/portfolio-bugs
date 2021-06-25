@@ -19,54 +19,74 @@ function Work(image, title, client, role, year, description, technologies, liveL
 
 // Create array of Work objects
 works = [
-  new Work('tonic', 'Tonic', 'CANOPY', 'Back-End Dev', '2015',
+  new Work(
+    'tonic',
+    'Tonic',
+    'CANOPY',
+    'Back-End Dev',
+    '2015',
     'A daily selection of privately personalized reads; no accounts or sign-ups required.',
     ['html', 'css', 'javascript'],
     'https://AkashaRojee.github.io/tonic',
-    'https://github.com/AkashaRojee/tonic'),
+    'https://github.com/AkashaRojee/tonic'
+  ),
 
-  new Work('multi-post-stories', 'Multi-Post Stories', 'FACEBOOK', 'Full Stack Dev', '2015',
+  new Work(
+    'multi-post-stories',
+    'Multi-Post Stories',
+    'FACEBOOK',
+    'Full Stack Dev',
+    '2015',
     'Experimental content creation feature that allows users to add to an existing story over the course of a day without spamming their friends.',
     ['html', 'ruby on rails', 'css', 'javascript'],
     'https://AkashaRojee.github.io/multi-post-stories',
-    'https://github.com/AkashaRojee/multi-post-stories'),
+    'https://github.com/AkashaRojee/multi-post-stories'
+  ),
 
-  new Work('facebook-360', 'Facebook 360', 'FACEBOOK', 'Full Stack Dev', '2015',
-    'Exploring the future of media in Facebook\'s first Virtual Reality app; a place to discover and enjoy 360 photos and videos on Gear VR.',
+  new Work(
+    'facebook-360',
+    'Facebook 360',
+    'FACEBOOK',
+    'Full Stack Dev',
+    '2015',
+    "Exploring the future of media in Facebook's first Virtual Reality app; a place to discover and enjoy 360 photos and videos on Gear VR.",
     ['html', 'ruby on rails', 'css', 'javascript'],
     'https://AkashaRojee.github.io/facebook-360',
-    'https://github.com/AkashaRojee/facebook-360'),
+    'https://github.com/AkashaRojee/facebook-360'
+  ),
 
-  new Work('uber-navigation', 'Uber Navigation', 'UBER', 'Lead Developer', '2015',
+  new Work(
+    'uber-navigation',
+    'Uber Navigation',
+    'UBER',
+    'Lead Developer',
+    '2015',
     'A smart assistant to make driving more safe, efficient, and fun by unlocking your most expensive computer: your car.',
     ['html', 'ruby on rails', 'css', 'javascript'],
     'https://AkashaRojee.github.io/uber-navigation',
-    'https://github.com/AkashaRojee/uber-navigation'),
+    'https://github.com/AkashaRojee/uber-navigation'
+  ),
 ];
 
 // Create card elements
 function createCard(index) {
   return {
-    'work-card': createElement('div',
-      `work-card flex-col desktop-flex-row justify-between${
-        index % 2 === 0 ? '' : ' desktop-row-reverse'}`),
+    'work-card': createElement('div', `work-card flex-col desktop-flex-row justify-between${index % 2 === 0 ? '' : ' desktop-row-reverse'}`),
     'image-container': createElement('div', 'image-container flex-col'),
-    image: createElement('img', 'image',
-      {
-        src: `./images/works/${works[index].image}.png`,
-        alt: `Screenshot of ${works[index].title}`,
-      }),
+    image: createElement('img', 'image', {
+      src: `./images/works/${works[index].image}.png`,
+      alt: `Screenshot of ${works[index].title}`,
+    }),
     content: createElement('div', 'content flex-col'),
     'title-subtitle': createElement('div', 'title-subtitle flex-col'),
     title: createElement('span', 'title flex-row blue-main span', {}, works[index].title),
     subtitle: createElement('div', 'subtitle flex-row align-center'),
     client: createElement('span', 'client blue-light', {}, works[index].client),
     separator: createElement('div', 'separator'),
-    'separator-image': createElement('img', 'separator-image',
-      {
-        src: './images/works/circle.png',
-        alt: 'Separator',
-      }),
+    'separator-image': createElement('img', 'separator-image', {
+      src: './images/works/circle.png',
+      alt: 'Separator',
+    }),
     role: createElement('span', 'role grey-main', {}, works[index].role),
     year: createElement('span', 'year grey-main', {}, works[index].year),
     'desc-tag-button': createElement('div', 'desc-tag-button flex-col'),
@@ -76,10 +96,8 @@ function createCard(index) {
     technology: createElement('span', 'technology'),
     'work-buttons': createElement('div', 'work-buttons flex-row'),
     'button-project': createElement('button', 'button-project btn font-medium', {}, 'See Project'),
-    'button-live': createElement('button', 'button-live button-modal btn font-medium',
-      {}, `<a href="${works[index].liveLink}">See Live</a>`),
-    'button-source': createElement('button', 'button-source button-modal btn font-medium',
-      {}, `<a href="${works[index].sourceLink}">See Source</a>`),
+    'button-live': createElement('button', 'button-live button-modal btn font-medium', {}, `<a href="${works[index].liveLink}">See Live</a>`),
+    'button-source': createElement('button', 'button-source button-modal btn font-medium', {}, `<a href="${works[index].sourceLink}">See Source</a>`),
   };
 }
 
@@ -92,9 +110,7 @@ function structureCard(card, index) {
   card['title-subtitle'].append(card.title, card.subtitle);
 
   card.separator.appendChild(card['separator-image']);
-  card.subtitle.append(card.client, card.separator,
-    card.role, card.separator.cloneNode(true),
-    card.year);
+  card.subtitle.append(card.client, card.separator, card.role, card.separator.cloneNode(true), card.year);
 
   card['desc-tag-button'].append(card['work-description'], card['tags-buttons']);
   card['tags-buttons'].append(card['tag-info'], card['work-buttons']);
@@ -135,13 +151,12 @@ function showModal(index) {
 
   // Dynamically add modal close icon to modal work card,
   // and add event listener to close modal window
-  const modalClose = createElement('img', 'modal-close',
-    {
-      src: './images/icons/mobile-modal-close.svg',
-      alt: 'Close mobile modal window',
-    });
+  const modalClose = createElement('img', 'modal-close', {
+    src: './images/icons/mobile-modal-close.svg',
+    alt: 'Close mobile modal window',
+  });
   modalCard['work-card'].appendChild(modalClose);
-  modalClose.addEventListener('close', () => {
+  modalClose.addEventListener('click', () => {
     closeModal();
   });
 
@@ -165,7 +180,8 @@ function populateWorkSection() {
   works.forEach((work, index) => {
     let card = createCard(index);
     card = structureCard(card, index);
-    card['button-project'].addEventListener('onclick', () => {
+    card['button-project'].addEventListener('click', () => {
+      console.log('hello');
       showModal(index);
     });
   });
